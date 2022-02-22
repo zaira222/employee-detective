@@ -272,10 +272,29 @@ const promptAddDept = () => {
     ===================
     `);
     return inquirer.prompt ([
-        {
+                {
+                type: 'input',
+                name: 'Department',
+                message: 'What is the name of the Department? (Required)',
+                validate: DepartmentInput => {
+                    if(DepartmentInput) {
+                        return true;
+                    } else {
+                        console.log('Enter departments name.');
+                        return false;
+                    }
+                }
 
-        }
-    ])
+        },
+    ]).then(function () {
+        connection.query('SELECT * FROM department WHERE `name`  INSERT INTO department',
+        function (err, results, fields) {
+            console.log(results);
+            console.log(fields);
+            promptCompany();
+           
+        })
+    })
 }
 
 const promptAddRole = () => {
@@ -286,9 +305,55 @@ const promptAddRole = () => {
     `);
     return inquirer.prompt ([
         {
+            type: 'input',
+            name: 'Role',
+            message: 'What is the name of the role? (Required)',
+            validate: RoleInput => {
+                if(RoleInput) {
+                    return true;
+                } else {
+                    console.log('Enter role name.');
+                    return false;
+                }
+            }
 
+    },
+    {
+        type: 'input',
+        name: 'Salary',
+        message: 'What is the salary of the role? (Required)',
+        validate: SalaryInput => {
+            if(SalaryInput) {
+                return true;
+            } else {
+                console.log('Enter salary amount.')
+                return false;
+            }
         }
-    ])
+    },
+    {
+        type: 'list',
+        name: 'dept',
+        message: 'Which department does the role belong to? (Required)',
+        choices: ['Finance', 'Sales', 'Marketing', 'Production', 'Engineer', 'HR', 'Accounting', 'Loss Prevention'],
+        validate: deptList => {
+            if(deptList) {
+                return true;
+            } else {
+                console.log('Choose a role')
+                return false;
+            }
+        }
+    }
+]).then(function () {
+    connection.query('SELECT * FROM role WHERE `title` and `salary` INSERT INTO role',
+    function (err, results, fields) {
+        console.log(results);
+        console.log(fields);
+        promptCompany();
+       
+    })
+})
 }
 
 const promptAddEmployee = () => {
