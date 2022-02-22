@@ -1,8 +1,3 @@
-DROP DATABASE IF EXISTS employee_detective;
-
-CREATE DATABASE employee_detective;
-USE employee_detective;
-
 DROP TABLE IF EXISTS department;
 DROP TABLE IF EXISTS employee;
 DROP TABLE IF EXISTS role;
