@@ -9,7 +9,7 @@
     (7, 'Accounting'),
     (8, 'Loss Prevention');
 
-INSERT INTO roles (id, title, department_id, salary)
+INSERT INTO role (id, title, department_id, salary)
     VALUES
     (1, 'Finance Lead', 'Finance', 90000),
     (2, 'Sales Associate', 'Sales', 30000),

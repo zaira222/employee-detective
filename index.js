@@ -170,91 +170,91 @@ const promptRoles = () => {
 
 
 const promptEmployees = () => {
-    connection.query(" SHOW TABLE * FROM employee", function (err, result, fields)
+    connection.query("SHOW TABLE * FROM employee", function (err, result, fields)
     {
     const employee = cTable.getTable([
         {
             id: 1,
-            first_name:
-            last_name:
+            first_name: 'Ruby',
+            last_name: 'Santiago',
             title: 'Finance Lead',
             department: 'Finance',
             salary: 90000,
-            manager:
+            manager: 'Jose Torres'
             
         },
         {
             id: 2,
-            first_name:
-            last_name:
+            first_name: 'Maria',
+            last_name: 'Lopez',
             title:  'Sales Associate',
             department: 'Sales',
             salary: 30000,
-            manager:
+            manager: 'Tom Beth'
             
             
 
         },
         {
             id: 3,
-            first_name:
-            last_name:
+            first_name: 'Makeyla',
+            last_name: 'Johnson',
             title:  'Marketing Specialist',
             department: 'Marketing',
             salary: 70000,
-            manager:
+            manager: 'Tracy Robin'
             
             
         },
         {
             id: 4,
-            first_name:
-            last_name:
+            first_name: 'Junior',
+            last_name: 'Winx',
             title:  'Production Lead',
             department: 'Production',
             salary: 100000,
-            manager:
+            manager: 'Jocey Marlo',
             
         },
         {
             id: 5,
-            first_name:
-            last_name:
+            first_name: 'Marko',
+            last_name: 'Del',
             title:  'Engineer Senior',
             department: 'Engineer',
             salary: 110000,
-            manager:
+            manager: 'Mario Smit',
             
 
         },
         {
             id: 6,
-            first_name:
-            last_name:
+            first_name: 'Jackie',
+            last_name: 'Lawrence',
             title:  'Assistant HR',
             department: 'HR',
             salary: 50000,
-            manager:
+            manager: 'Joe Can',
             
         },
         {
             id: 7,
-            first_name:
-            last_name:
+            first_name: 'Marta',
+            last_name: 'Robinson',
             title:  'Bookkeeping',
             department: 'Accounting',
             salary: 60000,
-            manager:
+            manager: 'Lauren Thompson',
            
         },
         {
             id: 8,
-            first_name:
-            last_name:
+            first_name: 'Alex',
+            last_name: 'True',
             title: 'Security' ,
             department: 'Loss Prevention',
             salary: 60000,
-            manager:
+            manager: 'Camila Roberts',
             
         }
     ])
