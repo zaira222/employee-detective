@@ -334,19 +334,11 @@ const promptAddRole = () => {
     {
         type: 'list',
         name: 'dept',
-        message: 'Which department does the role belong to? (Required)',
-        choices: ['Finance', 'Sales', 'Marketing', 'Production', 'Engineer', 'HR', 'Accounting', 'Loss Prevention'],
-        validate: deptList => {
-            if(deptList) {
-                return true;
-            } else {
-                console.log('Choose a role')
-                return false;
-            }
-        }
+        message: 'Which department does the role belong to?',
+        choices: ['Finance', 'Sales', 'Marketing', 'Production', 'Engineer', 'HR', 'Accounting', 'Loss Prevention']
     }
 ]).then(function () {
-    connection.query('SELECT * FROM role WHERE `title` and `salary` INSERT INTO role',
+    connection.query('SELECT * FROM role WHERE title and `salary` INSERT INTO `title` and `salary`',
     function (err, results, fields) {
         console.log(results);
         console.log(fields);

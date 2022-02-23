@@ -11,23 +11,23 @@
 
 INSERT INTO role (id, title, department_id, salary)
     VALUES
-    (1, 'Finance Lead', 'Finance', 90000),
-    (2, 'Sales Associate', 'Sales', 30000),
-    (3, 'Marketing Specialist', 'Marketing', 70000),
-    (4, 'Production Lead', 'Production', 100000),
-    (5, 'Engineer Senior', 'Engineer', 110000),
-    (6, 'Assitant HR', 'HR', 50000),
-    (7, 'Bookeeping', 'Accounting', 60000),
-    (8, 'Security', 'Loss Prevention', 60000);
+    (1, 'Finance Lead', 1, 90000),
+    (2, 'Sales Associate', 2, 30000),
+    (3, 'Marketing Specialist', 3, 70000),
+    (4, 'Production Lead', 4, 100000),
+    (5, 'Engineer Senior', 5, 110000),
+    (6, 'Assitant HR', 6, 50000),
+    (7, 'Bookeeping', 7, 60000),
+    (8, 'Security', 8, 60000);
 
 
-INSERT INTO employee (id, first_name, last_name, title, department, salary, manager)
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
     VALUES
-    (1, 'Ruby', 'Santiago', 'Finance Lead', 'Finance', 90000, 'Jose Torres'),
-    (2, 'Maria', 'Lopez', 'Sales Associate', 'Sales', 30000, 'Tom Beth'),
-    (3, 'Makeyla', 'Johnson', 'Marketing Specialist', 'Marketing', 70000, 'Tracy Robin'),
-    (4, 'Junior', 'Winx', 'Production Lead', 'Production', 100000, 'Jocey Marlo'),
-    (5, 'Marko', 'Del', 'Engineer Senior', 'Engineer', 110000, 'Mario Smit'),
-    (6, 'Jackie', 'Lawrence', 'Assitant HR', 'HR', 50000, 'Joe Can'),
-    (7, 'Marta', 'Robinson', 'Bookeeping', 'Accounting', 60000, 'Lauren Thompson'),
-    (8, 'Alex', 'True', 'Security', 'Loss Prevention', 60000, 'Camila Roberts');
+    (1, 'Ruby', 'Santiago', 1 ,  1),
+    (2, 'Maria', 'Lopez', 2 , 2),
+    (3, 'Makeyla', 'Johnson', 3 , 3),
+    (4, 'Junior', 'Winx', 4 , 4),
+    (5, 'Marko', 'Del', 5 , 5),
+    (6, 'Jackie', 'Lawrence', 6 , 6),
+    (7, 'Marta', 'Robinson', 7 , 7),
+    (8, 'Alex', 'True', 8 , 8);
