@@ -4,14 +4,22 @@ const cTable = require('console.table');
 const fs = require('fs');
 
 
-
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
+    port: 3306,
     password: 'WD4Rainnow99!',
     database: 'employee_detective'
   });
-  
+
+connection.connect(function(err) {
+    if(err) throw err;
+    console.log('connected!');
+
+
+    companies();
+});
+
 
 const promptCompany = () => {
     console.log(`
@@ -42,226 +50,49 @@ const promptCompany = () => {
             return promptAddEmployee();
         } else if (answer.options === "Update Employee Role") {
             return promptUpdateRole();
-        } else if (answer.options === "Done") {
-            return promptDone();
+        
         } else if (answer.options === "Menu") {
             return promptCompany();
-    }
+        }
     
 })
 }
 
 
 const promptDepartment = () => {
-          connection.query(" SHOW TABLE * FROM department", function (err, result, fields)
-          {
-          const department = cTable.getTable([
-              {
-                  id: 1,
-                  name:'Finance'
-              },
-              {
-                  id: 2,
-                  name: 'Sales'
-
-              },
-              {
-                  id: 3,
-                  name: 'Marketing'
-              },
-              {
-                  id: 4,
-                  name: 'Production'
-              },
-              {
-                  id: 5,
-                  name: 'Engineer'
-
-              },
-              {
-                id: 6,
-                name: 'HR'
-              },
-              {
-                id: 7,
-                name: 'Accounting'
-              },
-              {
-                  id: 8,
-                  name: 'Loss Prevention'
-              }
-          ])
-          console.log(department);
-           promptCompany();
+          connection.query("SELECT * FROM `department` WHERE `id` = `id` AND `name`=`name`", 
+          function (err, results, fields) {
+              console.log(results);
+              console.log(fields);
+            console.table('added to the database', results),
+                     promptCompany()
+          
         }) 
        
     } 
   
 
 const promptRoles = () => {
-    connection.query(" SHOW TABLE * FROM roles AND SELECT * department", function (err, result, fields)
-    {
-    const roles = cTable.getTable([
-        {
-            id: 1,
-            title: 'Finance Lead',
-            department: 'Finance',
-            salary: 90000,
-            
-        },
-        {
-            id: 2,
-            title:  'Sales Associate',
-            department: 'Sales',
-            salary: 30000,
-            
-            
-
-        },
-        {
-            id: 3,
-            title:  'Marketing Specialist',
-            department: 'Marketing',
-            salary: 70000,
-            
-            
-        },
-        {
-            id: 4,
-            title:  'Production Lead',
-            department: 'Production',
-            salary: 100000,
-            
-        },
-        {
-            id: 5,
-            title:  'Engineer Senior',
-            department: 'Engineer',
-            salary: 110000,
-            
-
-        },
-        {
-            id: 6,
-            title:  'Assistant HR',
-            department: 'HR',
-            salary: 50000,
-            
-        },
-        {
-            id: 7,
-            title:  'Bookkeeping',
-            department: 'Accounting',
-            salary: 60000,
-           
-        },
-        {
-            id: 8,
-            title: 'Security' ,
-            department: 'Loss Prevention',
-            salary: 60000,
-            
-        }
-    ])
-    console.log(roles);
-    promptCompany();
+        connection.query("SELECT * FROM `role` WHERE `id` = `id` AND `title`=`title` AND `department_id` = `department_id` AND `salary` = `salary`", 
+        function (err, results, fields) {
+            console.log(results);
+            console.log(fields);
+          console.table('added to the database', results),
+                   promptCompany()
   })
 }
 
 
 const promptEmployees = () => {
-    connection.query("SHOW TABLE * FROM employee", function (err, result, fields)
-    {
-    const employee = cTable.getTable([
-        {
-            id: 1,
-            first_name: 'Ruby',
-            last_name: 'Santiago',
-            title: 'Finance Lead',
-            department: 'Finance',
-            salary: 90000,
-            manager: 'Jose Torres'
-            
-        },
-        {
-            id: 2,
-            first_name: 'Maria',
-            last_name: 'Lopez',
-            title:  'Sales Associate',
-            department: 'Sales',
-            salary: 30000,
-            manager: 'Tom Beth'
-            
-            
-
-        },
-        {
-            id: 3,
-            first_name: 'Makeyla',
-            last_name: 'Johnson',
-            title:  'Marketing Specialist',
-            department: 'Marketing',
-            salary: 70000,
-            manager: 'Tracy Robin'
-            
-            
-        },
-        {
-            id: 4,
-            first_name: 'Junior',
-            last_name: 'Winx',
-            title:  'Production Lead',
-            department: 'Production',
-            salary: 100000,
-            manager: 'Jocey Marlo',
-            
-        },
-        {
-            id: 5,
-            first_name: 'Marko',
-            last_name: 'Del',
-            title:  'Engineer Senior',
-            department: 'Engineer',
-            salary: 110000,
-            manager: 'Mario Smit',
-            
-
-        },
-        {
-            id: 6,
-            first_name: 'Jackie',
-            last_name: 'Lawrence',
-            title:  'Assistant HR',
-            department: 'HR',
-            salary: 50000,
-            manager: 'Joe Can',
-            
-        },
-        {
-            id: 7,
-            first_name: 'Marta',
-            last_name: 'Robinson',
-            title:  'Bookkeeping',
-            department: 'Accounting',
-            salary: 60000,
-            manager: 'Lauren Thompson',
-           
-        },
-        {
-            id: 8,
-            first_name: 'Alex',
-            last_name: 'True',
-            title: 'Security' ,
-            department: 'Loss Prevention',
-            salary: 60000,
-            manager: 'Camila Roberts',
-            
-        }
-    ])
-    console.log(employee);
-    promptCompany();
+    connection.query("SELECT * FROM `employee` WHERE `id` = `id` AND `first_name`=`first_name` AND `last_name` = `last_name` AND `role_id` = `role_id` AND `manager_id` = `manager_id`", 
+    function (err, results, fields) {
+        console.log(results);
+        console.log(fields);
+      console.table('added to the database', results),
+               promptCompany()
   })
 } 
+
 
 
 
@@ -271,6 +102,9 @@ const promptAddDept = () => {
     Add  A Department
     ===================
     `);
+    connection.query("SELECT * FROM department", 
+    function (err, result, fields)
+    {
     return inquirer.prompt ([
                 {
                 type: 'input',
@@ -286,16 +120,20 @@ const promptAddDept = () => {
                 }
 
         },
-    ]).then(function () {
-        connection.query('SELECT * FROM department WHERE `name`  INSERT INTO department',
-        function (err, results, fields) {
-            console.log(results);
-            console.log(fields);
-            promptCompany();
-           
-        })
+    ]).then(function (answers) {
+        console.log(answers);
+        connection.query(
+        'SELECT * FROM department WHERE department.name=?', [answers.Department], function (err, results)
+        { 
+            if(err) throw err;
+       console.table('added to the database', results),
+                promptCompany()
+        }
+        )
     })
+})
 }
+
 
 const promptAddRole = () => {
     console.log(`
@@ -303,6 +141,10 @@ const promptAddRole = () => {
     ADD A Role
     ===================
     `);
+    employee =  []
+    connection.query("SELECT * FROM role", 
+    function (err, result, fields)
+    {
     return inquirer.prompt ([
         {
             type: 'input',
@@ -337,28 +179,56 @@ const promptAddRole = () => {
         message: 'Which department does the role belong to?',
         choices: ['Finance', 'Sales', 'Marketing', 'Production', 'Engineer', 'HR', 'Accounting', 'Loss Prevention']
     }
-]).then(function () {
-    connection.query('SELECT * FROM role WHERE title and `salary` INSERT INTO `title` and `salary`',
-    function (err, results, fields) {
-        console.log(results);
-        console.log(fields);
-        promptCompany();
-       
-    })
+]).then(function (answers) {
+    console.log(answers);
+    var sql = "SELECT * FROM role WHERE role.title = ?, role.salary = ?, role.department_id = ? INSERT WHERE 'answers.title', 'answers.salary', 'answers.dept'";
+    var inserts = ['answers.title', 'answers.salary', 'answers.dept'];
+    sql = mysql.format(sql, inserts);
+    console.table('added to the database', answers, inserts);
+    promptCompany()
 })
+    })
 }
-
 const promptAddEmployee = () => {
     console.log(`
     ===================
     Add an Employee
     ===================
     `);
+    employee = []
     return inquirer.prompt ([
         {
+            type: 'input',
+            name: 'first_name',
+            message: 'What is the employees first name?',
 
+        },
+        {
+            type: 'input',
+            name: 'last_name',
+            message: 'What is the employees last name?',
+        },
+        {
+            type: 'list',
+            name: 'employeeRole',
+            message: 'What is the employees role?',
+            choices: ['Finance Lead', 'Sales Associate', 'Marketing Specialist', 'Production Lead', 'Engineer Senior', 'Assistant HR', 'Bookeeping', 'Security'],
+        },
+        {
+           type: 'list',
+           name: 'manager',
+           message: 'Who is the employees manager?',
+           choices: ['None', 'Jose Torres', 'Tom Beth', 'Tracy Robin', 'Jocey Marlo', 'Mario Smit', 'Joe Can', 'Lauren Thompson', 'Camila Roberts'],
         }
-    ])
+        
+    ]).then(function (answers) {
+        console.log(answers);
+        var employee = "SELECT * FROM employee WHERE employee.first_name = ? , employee.last_name = ?, employee.role_id = ?, employee.manager_id";
+        var inserts = ['answers.first_name', 'answers.last_name', 'answers.employeeRole', 'answers.manager'];
+        employee = mysql.format(employee, inserts);
+        console.table('added to database', answers);
+        promptCompany()
+    })
 }
 
 const promptUpdateRole = () => {
@@ -369,22 +239,25 @@ const promptUpdateRole = () => {
     `);
     return inquirer.prompt ([
         {
-
-        }
-    ])
-}
-
-const promptDone = () => {
-    console.log(`
-    ===================
-    Done
-    ===================
-    `);
-    return inquirer.prompt ([
+            type: 'list',
+            name: 'name',
+            message: 'Which employee do you want to update?',
+            choices: ['Ruby Santiago', 'Maria Lopez', 'Makeyla Johnson', 'Junior Winx', 'Marko Del', 'Jackie Lawrence', 'Marta Robinson', 'Alex True']
+        },
         {
-
+            type: 'list',
+            name: 'newRole',
+            message: 'Which role do you want to assign the selected employee?',
+            choices: ['Finance Lead', 'Sales Associare', 'Marketing Specialist', 'Production Lead', 'Engineer Senior', 'Assistant HR', 'Bookeeping', 'Security']
         }
-    ])
+    ]).then(function (answers) {
+        console.log(answers);
+        var sql = "SELECT * FROM employee WHERE employee.name = ?, employee.role_id = ?";
+        var inserts = ['answers.name', 'answers.role_id'];
+        sql = mysql.format(sql,inserts);
+        console.log('added to the database', answers);
+        promptCompany()
+    })
 }
 
 function companies() {
@@ -394,10 +267,7 @@ function companies() {
     });
 }
 
-companies()
 
-connection.connect(err => {
-    console.log('success')
-});
+
 
 

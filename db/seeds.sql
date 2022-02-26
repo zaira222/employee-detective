@@ -19,7 +19,7 @@ INSERT INTO role (id, title, department_id, salary)
     (6, 'Assitant HR', 6, 50000),
     (7, 'Bookeeping', 7, 60000),
     (8, 'Security', 8, 60000);
-
+    
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
     VALUES
