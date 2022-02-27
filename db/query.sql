@@ -1,18 +1,18 @@
-SELECT department.*, role.department_id AS department_id
+SELECT department.*, department.id AS department_id
 FROM department 
-RIGHT JOIN role ON department.id = role.department_id;
+RIGHT JOIN role ON role.department_id = department.id;
 
 
 
-SELECT role.*, employee.role_id AS role_id
+SELECT role.*, employee.id AS role_id
 FROM role
-LEFT JOIN employee ON role.id = role_id;
+LEFT JOIN employee ON employee.role_id = role.id ;
 
 
 
- SELECT my.id,
-    me.manager_id
+ SELECT m.id,
+    m.manager_id
     FROM
     employee my
     LEFT JOIN
-    employee me ON my.id = me.manager_id;
+    employee m ON m.id = m.manager_id;
