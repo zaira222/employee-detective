@@ -81,7 +81,7 @@ const promptRoles = () => {
 
 
 const promptEmployees = () => {
-    connection.query("SELECT * FROM `employee`  WHERE `id` = `id` AND `first_name`=`first_name` AND `last_name` = `last_name` AND `role_id` = `role_id` AND `manager_id` = `manager_id` ", 
+    connection.query("SELECT * FROM `employee`  WHERE `id` = `id` AND `first_name`=`first_name` AND `last_name` = `last_name` AND `role_id` = `role_id` AND `manager_id` = `manager_id` ",
     function (err, results, fields) {
       console.table('added to the database', results),
                promptCompany()
@@ -171,7 +171,7 @@ const promptAddRole = () => {
     {
         type: 'list',
         name: 'dept',
-        message: 'Which department does the role belong to?',
+        message: 'Which department does the role belong to 1= Finance Lead, 2 = Sales Associate, 3 = Marketing Specialist, 4 = Production Lead, 5 = Engineer Senior, 6 = Assistant HR, 7 = Bookeeping, 8 = Security?',
         choices: ['1', '2', '3', '4', '5', '6', '7', '8']
     }
 ]).then(function (answers) {
@@ -212,13 +212,13 @@ const promptAddEmployee = () => {
         {
             type: 'list',
             name: 'employeeRole',
-            message: 'What is the employees role?',
+            message: 'What is the employees role 1 = Finance, 2 = Sales, 3 = Marketing, 4 = Production, 5 =  Engineer,6 =  HR, 7 = Accounting, 8 = Loss Prevention?',
             choices: ['1', '2', '3', '4', '5', '6', '7', '8'],
         },
         {
            type: 'list',
            name: 'manager',
-           message: 'Who is the employees manager?',
+           message: 'Who is the employees manager 1 = None, 2 = Jose Torres, 3 = Tom Beth, 4 = Tracy Robin, 5 = Jocey Marlo, 6 = Mario Smit, 7 = Joe Can, 8 = Lauren Thompson, 9 = Camila Roberts?',
            choices: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
         }
         
